@@ -1,0 +1,109 @@
+const adminEmail = "thaislimaalves03@gmail.com";
+
+// 🔐 LOGIN GOOGLE (simulado por enquanto)
+function login() {
+  let email = prompt("Digite seu Gmail:");
+
+  let user = { email: email };
+
+  verificarAdmin(user);
+}
+
+// 🔍 Verifica se é admin
+function verificarAdmin(user) {
+  if (user.email === adminEmail) {
+    document.getElementById("adminPanel").style.display = "block";
+    alert("Você é ADMIN 😎");
+  } else {
+    alert("Bem-vindo!");
+  }
+}
+
+// 🎬 Adicionar filme
+function adicionarFilme() {
+  let titulo = document.getElementById("titulo").value;
+  let url = document.getElementById("url").value;
+
+  let card = document.createElement("div");
+  card.className = "card";
+  card.innerHTML = `
+    <h3>${titulo}</h3>
+    <video src="${url}" controls width="300"></video>
+  `;
+
+  document.querySelector(".filmes").appendChild(card);
+}
+
+// 🎨 Mudar cor
+function mudarCor() {
+  let cor = document.getElementById("corSite").value;
+  document.body.style.backgroundColor = cor;
+}
+let filmes = [
+  {
+    id: 1,
+    nome: "Big Buck Bunny",
+    origem: "Big Buck Bunny (2008) - Open Movie",
+    link: "https://archive.org/download/BigBuckBunny_328/BigBuckBunny_512kb.mp4"
+  },
+  {
+    id: 2,
+    nome: "Elephants Dream",
+    origem: "Elephants Dream (2006) - Open Movie",
+    link: "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"
+  },
+  {
+    id: 3,
+    nome: "The Little Princess",
+    origem: "The Little Princess (1939) - Domínio Público",
+    link: "https://archive.org/download/TheLittlePrincess1939/TheLittlePrincess1939_512kb.mp4"
+  },
+  {
+    id: 4,
+    nome: "Gulliver's Travels",
+    origem: "Gulliver's Travels (1939) - Domínio Público",
+    link: "https://archive.org/download/GulliversTravels1939/GulliversTravels1939_512kb.mp4"
+  },
+  {
+    id: 5,
+    nome: "Popeye Meets Sindbad",
+    origem: "Popeye the Sailor Meets Sindbad (1936) - Domínio Público",
+    link: "https://archive.org/download/Popeye_the_Sailor_Meets_Sindbad_the_Sailor/Popeye_the_Sailor_Meets_Sindbad_the_Sailor_512kb.mp4"
+  }
+];
+
+// Mostrar filmes na tela
+function mostrarFilmes(lista) {
+  const container = document.getElementById('listaFilmes');
+  container.innerHTML = ""; // limpa antes de mostrar
+  lista.forEach(filme => {
+    const div = document.createElement('div');
+    div.innerHTML = `
+      <h3>${filme.nome}</h3>
+      <p>Origem: ${filme.origem}</p>
+      <video src="${filme.link}" controls width="300"></video>
+      <br>
+      <button onclick="removerFilme(${filme.id})">Remover</button>
+    `;
+    container.appendChild(div);
+  });
+}
+
+// Remover filme
+function removerFilme(id) {
+  filmes = filmes.filter(f => f.id !== id);
+  mostrarFilmes(filmes);
+}
+
+// Pesquisa
+document.getElementById('pesquisa').addEventListener('input', (e) => {
+  const termo = e.target.value.toLowerCase();
+  const filtrados = filmes.filter(f => 
+    f.nome.toLowerCase().includes(termo) || 
+    f.origem.toLowerCase().includes(termo)
+  );
+  mostrarFilmes(filtrados);
+});
+
+// Inicializa mostrando todos
+mostrarFilmes(filmes);

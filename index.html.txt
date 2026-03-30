@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>NeuroPlay</title>
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+</head>
+
+<body>
+
+<h1>🎬 NeuroPlay</h1>
+
+<button onclick="login()">Entrar com Google</button>
+
+<div class="filmes"></div>
+
+<!-- ADMIN -->
+<div id="adminPanel" style="display:none;">
+  <h2>Painel Admin ⚙️</h2>
+
+  <input type="text" id="titulo" placeholder="Nome do filme">
+  <input type="text" id="url" placeholder="Link do vídeo">
+
+  <button onclick="adicionarFilme()">Adicionar Filme</button>
+
+  <br><br>
+
+  <input type="color" id="corSite">
+  <button onclick="mudarCor()">Mudar cor</button>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html><link rel="stylesheet" href="style.css">
+<script src="script.js"></script><!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>NeuroPlay - Filmes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🎬 NeuroPlay</h1>
+
+  <!-- Barra de pesquisa -->
+  <input type="text" id="pesquisa" placeholder="Pesquisar filme...">
+
+  <!-- Lista de filmes -->
+  <div id="listaFilmes"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
